@@ -7,6 +7,7 @@
 }:
 let
   name = poetryLib.moduleName pyProject.tool.poetry.name;
+  underscoredName = builtins.replaceStrings ["-"] ["_"];
 
   # Just enough standard PKG-INFO fields for an editable installation
   pkgInfoFields = {
@@ -42,9 +43,10 @@ let
         (lib.attrValues editablePackageSources)}
 
         # NEW
-        mkdir "${name}-${pyProject.tool.poetry.version}.dist-info"
-        cd "${name}-${pyProject.tool.poetry.version}.dist-info"
+        mkdir "${underscoredName}-${pyProject.tool.poetry.version}.dist-info"
+        cd "${underscoredName}-${pyProject.tool.poetry.version}.dist-info"
         ln -s ${pkgInfoFile} METADATA
+        # ln -s ${entryPointsFile} entry_points.txt
   ''
   );
 in
