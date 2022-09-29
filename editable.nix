@@ -39,15 +39,12 @@ let
     (src: ''
           echo "${toString src}" >> poetry2nix-editable.pth
         '')
-          (lib.attrValues editablePackageSources)}
+        (lib.attrValues editablePackageSources)}
 
-        # Create a very simple egg so pkg_resources can find this package
-        # See https://setuptools.readthedocs.io/en/latest/formats.html for more info on the egg format
-        mkdir "${name}.egg-info"
-        cd "${name}.egg-info"
-        ln -s ${pkgInfoFile} PKG-INFO
-        ${lib.optionalString (pyProject.tool.poetry ? plugins) ''
-          ln -s ${entryPointsFile} entry_points.txt
+        # NEW
+        mkdir "${name}-${pyProject.tool.poetry.version}.dist-info"
+        cd "${name}-${pyProject.tool.poetry.version}.dist-info"
+        ln -s ${pkgInfoFile} METADATA
         ''}
   ''
   );
