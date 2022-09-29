@@ -46,7 +46,6 @@ let
         mkdir "${underscoredName}-${pyProject.tool.poetry.version}.dist-info"
         cd "${underscoredName}-${pyProject.tool.poetry.version}.dist-info"
         ln -s ${pkgInfoFile} METADATA
-        # ln -s ${entryPointsFile} entry_points.txt
   ''
   );
 in
