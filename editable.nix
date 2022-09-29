@@ -7,7 +7,7 @@
 }:
 let
   name = poetryLib.moduleName pyProject.tool.poetry.name;
-  underscoredName = builtins.replaceStrings ["-"] ["_"];
+  underscoredName = builtins.replaceStrings ["-"] ["_"] name;
 
   # Just enough standard PKG-INFO fields for an editable installation
   pkgInfoFields = {
