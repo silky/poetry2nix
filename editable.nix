@@ -45,7 +45,6 @@ let
         mkdir "${name}-${pyProject.tool.poetry.version}.dist-info"
         cd "${name}-${pyProject.tool.poetry.version}.dist-info"
         ln -s ${pkgInfoFile} METADATA
-        ''}
   ''
   );
 in
